@@ -32,7 +32,28 @@ export function IdeasUpload() {
           // Skip the first row. If the first row is at index 0, start from index 1
           const ideasList = results.data.slice(1).flat()
           console.log({ ideasList })
-          //await axios.post('your-api-endpoint', { ideasList })
+          try {
+            const response = await fetch(
+              'https://your-external-api.com/endpoint',
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ideasList }),
+              },
+            )
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`)
+            }
+
+            // You can process the response further if needed
+            const responseData = await response.json()
+            console.log('Response data:', responseData)
+          } catch (error) {
+            console.error('Error sending data:', error)
+          }
         },
         header: false,
       })
