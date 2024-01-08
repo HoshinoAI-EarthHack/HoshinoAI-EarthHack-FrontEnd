@@ -45,7 +45,9 @@ export function IdeasUpload() {
               'http://127.0.0.1:5000/generate_ideas',
               {
                 method: 'POST',
+                mode: 'cors', // defaults to same-origin
                 headers: {
+                  'Accept': 'application/json',
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
