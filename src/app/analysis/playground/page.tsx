@@ -13,10 +13,9 @@ import { DashboardHeader } from '@/components/DashboardHeader'
 export default function Home() {
   return (
     <>
-      <Header />
-      {/* <DashboardHeader /> */}
+      <DashboardHeader />
       <main>
-        <IdeasUpload />
+        <h1>thing 2</h1>
       </main>
       <Footer />
     </>

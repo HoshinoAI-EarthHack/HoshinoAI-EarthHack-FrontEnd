@@ -1,16 +1,21 @@
 'use client'
 
+//this needs to be MUCH MUCH BETTER and more secure and stuff
+
 import Image from 'next/image'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import React, { useState, useRef } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
+
 import * as Papa from 'papaparse'
 
 export function IdeasUpload() {
   const [file, setFile] = useState<File | null>(null)
   const [fileName, setFileName] = useState<string>('')
+  const router = useRouter() // Hook to control routing
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -31,16 +36,19 @@ export function IdeasUpload() {
         complete: async (results) => {
           // Skip the first row. If the first row is at index 0, start from index 1
           const ideasList = results.data.slice(1).flat()
-          console.log({ ideasList })
+          const userid = Math.floor(10000 + Math.random() * 90000).toString()
+          const data = { userid, ideasList }
+
+          console.log(data)
           try {
             const response = await fetch(
-              'https://your-external-api.com/endpoint',
+              'http://127.0.0.1:5000/generate_idea',
               {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ ideasList }),
+                body: JSON.stringify(data),
               },
             )
 
@@ -51,6 +59,8 @@ export function IdeasUpload() {
             // You can process the response further if needed
             const responseData = await response.json()
             console.log('Response data:', responseData)
+            // Redirect on successful fetch
+            router.push('/analysis/overview') // Replace with your desired path
           } catch (error) {
             console.error('Error sending data:', error)
           }
