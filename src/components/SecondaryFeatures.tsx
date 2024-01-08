@@ -21,9 +21,8 @@ interface Feature {
 const features: Array<Feature> = [
   {
     name: 'Step 1',
-    summary: 'lorem ipseum dolares',
-    description:
-      'lorem ipseum dolares lorem ipseum dolares lorem ipseum dolares  lor',
+    summary: 'Give us your ideas.',
+    description: '',
     image: screenshotProfitLoss,
     icon: function ReportingIcon() {
       let id = useId()
@@ -55,9 +54,8 @@ const features: Array<Feature> = [
   },
   {
     name: 'Step 2',
-    summary: 'lorem ipseum dolares',
-    description:
-      'lorem ipseum dolares lorem ipseum dolares lorem ipseum dolares  lor',
+    summary: 'Drag and Drop!',
+    description: '',
     image: screenshotInventory,
     icon: function InventoryIcon() {
       return (
@@ -82,9 +80,8 @@ const features: Array<Feature> = [
   },
   {
     name: 'Step 3',
-    summary: 'lorem ipseum dolares',
-    description:
-      'lorem ipseum dolares lorem ipseum dolares lorem ipseum dolares  lor',
+    summary: 'See how your ideas could work together!',
+    description: '',
     image: screenshotContacts,
     icon: function ContactsIcon() {
       return (

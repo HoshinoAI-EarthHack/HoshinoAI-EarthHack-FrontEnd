@@ -15,6 +15,7 @@ import * as Papa from 'papaparse'
 export function IdeasUpload() {
   const [file, setFile] = useState<File | null>(null)
   const [fileName, setFileName] = useState<string>('')
+  const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter() // Hook to control routing
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -34,6 +35,7 @@ export function IdeasUpload() {
     if (file) {
       Papa.parse(file, {
         complete: async (results) => {
+          setLoading(true)
           // Skip the first row. If the first row is at index 0, start from index 1
           const ideasList = results.data.slice(1).flat()
           const userid = Math.floor(10000 + Math.random() * 90000).toString()
@@ -57,9 +59,8 @@ export function IdeasUpload() {
             }
 
             // You can process the response further if needed
-            const responseData = await response.json()
-            console.log('Response data:', responseData)
             // Redirect on successful fetch
+            console.log('what?')
             router.push('/analysis/overview') // Replace with your desired path
           } catch (error) {
             console.error('Error sending data:', error)
@@ -123,6 +124,7 @@ export function IdeasUpload() {
         >
           Submit
         </button>
+        {loading && <h1>Loading...</h1>}
         {/* <div className="mt-4 flex">
           <a
             href="#"
