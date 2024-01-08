@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <DashboardHeader />
       <main>
-        <h1>thing</h1>
+        <h1>thing1</h1>
       </main>
       <Footer />
     </>
